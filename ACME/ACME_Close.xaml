@@ -51,7 +51,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Attach Browser System 1" sap:VirtualizedContainerService.HintSize="414.4,441.6" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="0f23285e053bad6c1a5f567f17bd688c" Selector="&lt;html title='ACME System 1 - *' /&gt;">
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Attach Browser System 1" sap:VirtualizedContainerService.HintSize="414.4,441.6" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="12f5073d75f994ac28586eefea104af1" Selector="&lt;html title='ACME System 1 - *' /&gt;">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -75,7 +75,7 @@
                 </ui:CursorPosition>
               </ui:Click.CursorPosition>
               <ui:Click.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="089f87d97f655d46a904da0434077ffb" Selector="&lt;html title='ACME System 1 - *' /&gt;&lt;ctrl name='Log Out' role='link' /&gt;" WaitForReady="INTERACTIVE" />
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="dd2cb4501a9cd1f72567d9664058ce43" Selector="&lt;html title='ACME System 1 - *' /&gt;&lt;ctrl name='Log Out' role='link' /&gt;" WaitForReady="INTERACTIVE" />
               </ui:Click.Target>
             </ui:Click>
             <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="314.4,22.4" sap2010:WorkflowViewState.IdRef="CloseTab_1" />
