@@ -76,7 +76,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <State x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="Get next transaction input data" DisplayName="Get Transaction Data" sap:VirtualizedContainerService.HintSize="824,1131.2" sap2010:WorkflowViewState.IdRef="State_4">
+    <State x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="Get next transaction input data" DisplayName="Get Transaction Data" sap:VirtualizedContainerService.HintSize="231.2,98.4" sap2010:WorkflowViewState.IdRef="State_4">
       <State.Entry>
         <Sequence sap2010:Annotation.AnnotationText="Data retrieval mechanism. The TransactionNumber variable holds the current transaction number. Incrementing this number means getting the next transaction. For a robot retry, the number is not increased, in case of application exception, until the max retry number.&#xA;TransactionItem type needs to be changed accordingly." DisplayName="Retrieve Data" sap:VirtualizedContainerService.HintSize="798.4,714.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
           <Sequence.Variables>
@@ -348,7 +348,7 @@
                                   <InArgument x:TypeArguments="s:Exception">[Nothing]</InArgument>
                                 </Assign.Value>
                               </Assign>
-                              <If Condition="[Config is Nothing]" DisplayName="If first run - read Config file" sap:VirtualizedContainerService.HintSize="314.4,52.8" sap2010:WorkflowViewState.IdRef="If_1">
+                              <If Condition="[Config is Nothing]" DisplayName="If first run - read Config file" sap:VirtualizedContainerService.HintSize="633.6,1108" sap2010:WorkflowViewState.IdRef="If_1">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -356,20 +356,20 @@
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
                                 <If.Then>
-                                  <Sequence DisplayName="First Run" sap:VirtualizedContainerService.HintSize="336,590" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                                  <Sequence DisplayName="First Run" sap:VirtualizedContainerService.HintSize="508.8,958.4" sap2010:WorkflowViewState.IdRef="Sequence_17">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
-                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke InitAllSettings workflow" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="Framework\InitAllSettings.xaml">
+                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke InitAllSettings workflow" sap:VirtualizedContainerService.HintSize="486.4,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="Framework\InitAllSettings.xaml">
                                       <ui:InvokeWorkflowFile.Arguments>
                                         <InArgument x:TypeArguments="x:String" x:Key="in_ConfigFile">Data\Config.xlsx</InArgument>
                                         <InArgument x:TypeArguments="s:String[]" x:Key="in_ConfigSheets">[{"Settings", "Constants"}]</InArgument>
                                         <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="out_Config">[Config]</OutArgument>
                                       </ui:InvokeWorkflowFile.Arguments>
                                     </ui:InvokeWorkflowFile>
-                                    <Sequence sap2010:Annotation.AnnotationText="Save job arguments with values to Config, using the argument's name as keyname. " DisplayName="Save job arguments Config" sap:VirtualizedContainerService.HintSize="314,123" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                                    <Sequence sap2010:Annotation.AnnotationText="Save job arguments with values to Config, using the argument's name as keyname. " DisplayName="Save job arguments Config" sap:VirtualizedContainerService.HintSize="486.4,112.8" sap2010:WorkflowViewState.IdRef="Sequence_22">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -399,12 +399,12 @@
                                         </If.Else>
                                       </If>
                                     </Sequence>
-                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke KillAllProcesses workflow" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_18" UnSafe="False" WorkflowFileName="Framework\KillAllProcesses.xaml">
+                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke KillAllProcesses workflow" sap:VirtualizedContainerService.HintSize="486.4,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_18" UnSafe="False" WorkflowFileName="Framework\KillAllProcesses.xaml">
                                       <ui:InvokeWorkflowFile.Arguments>
                                         <scg:Dictionary x:TypeArguments="x:String, Argument" />
                                       </ui:InvokeWorkflowFile.Arguments>
                                     </ui:InvokeWorkflowFile>
-                                    <ui:AddLogFields sap2010:Annotation.AnnotationText="Add BusinessProcessName" DisplayName="Add Log Fields" sap:VirtualizedContainerService.HintSize="314,49" sap2010:WorkflowViewState.IdRef="AddLogFields_1">
+                                    <ui:AddLogFields sap2010:Annotation.AnnotationText="Add BusinessProcessName" DisplayName="Add Log Fields" sap:VirtualizedContainerService.HintSize="486.4,50.4" sap2010:WorkflowViewState.IdRef="AddLogFields_1">
                                       <ui:AddLogFields.Fields>
                                         <InArgument x:TypeArguments="x:String" x:Key="logF_BusinessProcessName">[Config("logF_BusinessProcessName").ToString]</InArgument>
                                       </ui:AddLogFields.Fields>
@@ -414,6 +414,18 @@
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
                                     </ui:AddLogFields>
+                                    <Sequence DisplayName="Deletes any existing Excel File" sap:VirtualizedContainerService.HintSize="486.4,334.4" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <If Condition="[File.Exists(Config(&quot;Output_File&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="464,209.6" sap2010:WorkflowViewState.IdRef="If_10">
+                                        <If.Then>
+                                          <ui:Delete ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[Config(&quot;Output_File&quot;).ToString]" />
+                                        </If.Then>
+                                      </If>
+                                    </Sequence>
                                   </Sequence>
                                 </If.Then>
                               </If>

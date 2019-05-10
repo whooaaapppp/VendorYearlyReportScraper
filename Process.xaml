@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ProcessTransaction" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ProcessTransaction" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_TransactionItem" Type="InArgument(x:String)" />
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>240,336.8</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>579.2,1563.2</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -31,6 +31,7 @@
       <x:String>UiPath.Core</x:String>
       <x:String>UiPath.Core.Activities</x:String>
       <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml.Serialization</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -55,14 +56,164 @@
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Description: In this file all other process specific files will be invoked. If an application exception occurs, the current transaction can be retried. If a BRE is thrown, the transaction will be skipped. Can be a flowchart or sequence. " DisplayName="ProcessTransaction" sap:VirtualizedContainerService.HintSize="200,256.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
+      <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence sap2010:Annotation.AnnotationText="Description: Opens a Work Item page (specified by In_TransactionItem), acquires a Work Item of the page, and acquires only ones of Description = &quot;Generate Yearly Report for Vendor&quot; AND Status = Open AND WIID &lt; 700000&#xD;&#xA;The acquired data is added to the file storing the result." DisplayName="ProcessTransaction" sap:VirtualizedContainerService.HintSize="436.8,1120.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="WorkItems" />
+      <Variable x:TypeArguments="sd:DataTable" Name="CollatedWI" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
+    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Next Page" sap:VirtualizedContainerService.HintSize="414.4,107.2" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+      <ui:Click.CursorPosition>
+        <ui:CursorPosition Position="Center">
+          <ui:CursorPosition.OffsetX>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetX>
+          <ui:CursorPosition.OffsetY>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetY>
+        </ui:CursorPosition>
+      </ui:Click.CursorPosition>
+      <ui:Click.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="a664accbc44ca193ea769f4feb13bf13" Selector="[&quot;&lt;html title='ACME System 1 - Work Items' /&gt;&lt;webctrl aaname='&quot; + in_TransactionItem + &quot;' tag='LI' /&gt;&quot;]" WaitForReady="INTERACTIVE" />
+      </ui:Click.Target>
+    </ui:Click>
+    <ui:OnUiElementAppear ContinueOnError="{x:Null}" FoundElement="{x:Null}" DisplayName="On Element Next Page" sap:VirtualizedContainerService.HintSize="414.4,471.2" sap2010:WorkflowViewState.IdRef="OnUiElementAppear_1" RepeatForever="False" WaitActive="False" WaitVisible="False">
+      <ui:OnUiElementAppear.Body>
+        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="336.8,294.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ExtractData NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[WorkItems]" DelayBetweenPagesMS="300" DisplayName="Extract Table" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' /&gt;" sap:VirtualizedContainerService.HintSize="314.4,107.2" sap2010:WorkflowViewState.IdRef="ExtractData_1" MaxNumberOfResults="100" SimulateClick="False">
+            <ui:ExtractData.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="0e54b704c016a5b340af273f820e73c6" Selector="&lt;html title='ACME System 1 - Work Items' /&gt;&lt;webctrl tag='TABLE' /&gt;" WaitForReady="COMPLETE" />
+            </ui:ExtractData.Target>
+          </ui:ExtractData>
+          <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="Actions" DataTable="[WorkItems]" DisplayName="Remove Actions Column" sap:VirtualizedContainerService.HintSize="314.4,22.4" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_1" />
+        </Sequence>
+      </ui:OnUiElementAppear.Body>
+      <ui:OnUiElementAppear.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="040ca25d0c3009bf8138ad77d6470422" Selector="[&quot;&lt;html title='ACME System 1 - Work Items' /&gt;&lt;webctrl aaname='&quot;+ in_TransactionItem +&quot;' tag='SPAN' class='page-numbers current' /&gt;&quot;]" WaitForReady="INTERACTIVE" />
+      </ui:OnUiElementAppear.Target>
+    </ui:OnUiElementAppear>
+    <Assign sap:VirtualizedContainerService.HintSize="414.4,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:DataTable">[CollatedWI]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:DataTable">[WorkItems.Clone()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[WorkItems]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="414.4,52.8" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+      <ui:ForEachRow.Body>
+        <ActivityAction x:TypeArguments="sd:DataRow">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="486.4,634.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If Condition="[row(&quot;Status&quot;).Equals(&quot;Open&quot;) AND CINT(row(&quot;WIID&quot;)) &lt; 700000 AND row(&quot;Description&quot;).Equals(&quot;Generate Yearly Report for Vendor&quot;)]" DisplayName="If WI is extracted, add to CollatedWI" sap:VirtualizedContainerService.HintSize="464,509.6" sap2010:WorkflowViewState.IdRef="If_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence DisplayName="Push the new data" sap:VirtualizedContainerService.HintSize="240,360" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <WriteLine DisplayName="Debugging" sap:VirtualizedContainerService.HintSize="217.6,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;Work Item: &quot; + row(&quot;WIID&quot;).ToString + &quot; &quot; + row(&quot;Status&quot;).ToString + &quot; &quot; + row(&quot;Description&quot;).ToString]" />
+                  <InvokeMethod DisplayName="Invoke &quot;ImportRow&quot;" sap:VirtualizedContainerService.HintSize="217.6,132.8" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="ImportRow">
+                    <InvokeMethod.TargetObject>
+                      <InArgument x:TypeArguments="sd:DataTable">[CollatedWI]</InArgument>
+                    </InvokeMethod.TargetObject>
+                    <InArgument x:TypeArguments="sd:DataRow">[row]</InArgument>
+                  </InvokeMethod>
+                </Sequence>
+              </If.Then>
+            </If>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEachRow.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEachRow>
+    <If Condition="[CollatedWI.Rows.Count &gt; 0]" DisplayName="If WI exists append to the excel file" sap:VirtualizedContainerService.HintSize="414.4,52.8" sap2010:WorkflowViewState.IdRef="If_5">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <If Condition="[File.Exists(in_Config(&quot;Output_File&quot;).ToString)]" DisplayName="If Excel File Exist Add It, Otherwise Write It" sap:VirtualizedContainerService.HintSize="853.6,472" sap2010:WorkflowViewState.IdRef="If_4">
+          <If.Then>
+            <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="414.4,322.4" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" WorkbookPath="[in_Config(&quot;Output_File&quot;).ToString]">
+              <ui:ExcelApplicationScope.Body>
+                <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="336.8,212.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:ExcelAppendRange DataTable="[CollatedWI]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="314.4,88" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_2" SheetName="Sheet1" />
+                  </Sequence>
+                </ActivityAction>
+              </ui:ExcelApplicationScope.Body>
+            </ui:ExcelApplicationScope>
+          </If.Then>
+          <If.Else>
+            <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="414.4,322.4" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_4" WorkbookPath="[in_Config(&quot;Output_File&quot;).ToString]">
+              <ui:ExcelApplicationScope.Body>
+                <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="336.8,212.8" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:ExcelWriteRange AddHeaders="False" DataTable="[CollatedWI]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="314.4,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_2" SheetName="Sheet1" StartingCell="A1" />
+                  </Sequence>
+                </ActivityAction>
+              </ui:ExcelApplicationScope.Body>
+            </ui:ExcelApplicationScope>
+          </If.Else>
+        </If>
+      </If.Then>
+    </If>
   </Sequence>
 </Activity>
