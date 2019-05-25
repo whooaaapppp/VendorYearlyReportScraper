@@ -1,6 +1,6 @@
 # VendorYearlyReportScraper
 
-Here are the steps performed by the Robot:
+Here are the steps performed by the Robot using REFramework
 1. Log in to https://www.acme-test.com.
 2. On the landing page, Dashboard, click on the Work items menu item. Scrape the data in all the pages of the table, page by page, ensuring error handling and recovery.
 3. For each page:
@@ -9,7 +9,7 @@ Here are the steps performed by the Robot:
 - Filter the records where WIID is less than 700000;
 - Append the resulting datatable into an Excel worksheet; you shouldn't worry about the headers and format of the output file.
 
-Constraints to follow in the development, using the REFrameWork:
+Constraints:
 1. TransactionItem datatype should be a String. The process should recover and retry in case of errors in navigation between WorkItems page. One transaction is the action of scraping one web page.By navigating to the next page, the next transaction will execute. (Same as ACME Process 4 Dispatcher from the UiPath Academy).
 2. Create a separate workflow file for the Login to ACME. File input arguments: URL ; Username ; Password .
 3. Create a separate workflow file for closing ACME. 
